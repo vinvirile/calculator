@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap');
+
+:root {
+  --bg-light-p: #fff;
+  --bg-light-s: #f8f9fa;
+  --bg-dark-p: #212529;
+  --bg-dark-s: #343a40;
+  --peach: #ff6b6b;
+  --teal: #20c997;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #000;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  font-family: Ubuntu, sans-serif;
+}
+
+.container {
+  max-width: 410px;
+  margin: 0 auto;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  border-radius: 24px;
+  background-color: var(--bg-light-p);
+  /* margin: 48px; */
+}
+
+.container.night {
+  background-color: var(--bg-dark-p);
+}
+
+.day-icon,
+.night-icon {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.night-icon {
+  color: #ced4da;
+}
+
+.day-night-cycle-box {
+  flex: 0.2;
+}
+
+.day-night-cycle {
+  display: flex;
+  background-color: var(--bg-light-s);
+  width: 100px;
+  padding: 8px 12px;
+  justify-content: space-between;
+  border-radius: 1em;
+  margin: 12px auto;
+}
+
+.solution-numbers-box {
+  flex: 0.3;
+  position: relative;
+  margin-right: 40px;
+}
+
+.equation {
+  text-align: right;
+  font-size: 24px;
+}
+
+.numbers-box {
+  position: absolute;
+  bottom: 24px;
+  right: 0;
+}
+
+.e-type {
+  color: var(--peach);
+}
+
+.answer {
+  font-size: 64px;
+  font-weight: bold;
+  text-align: right;
+}
+
+.button-numbers-box {
+  flex: 0.6;
+  background-color: var(--bg-light-s);
+  border-radius: 2em;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-box {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 50px);
+  width: 90%;
+  justify-content: center;
+  column-gap: 24px;
+  row-gap: 24px;
+  margin: 0px;
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  background-color: #f1f3f5;
+  /* color: #fff; */
+  width: 64px;
+  height: 64px;
+  font-size: 24px;
+  border-radius: 1em;
+  align-self: center;
+  justify-self: center;
+  font-weight: 500;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+button:nth-child(1),
+button:nth-child(2),
+button:nth-child(3) {
+  color: var(--teal);
+}
+
+button:nth-child(4),
+button:nth-child(8),
+button:nth-child(12),
+button:nth-child(16),
+button:nth-child(20) {
+  color: var(--peach);
+}
