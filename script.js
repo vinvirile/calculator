@@ -9,8 +9,10 @@ const [firstNumber, equType, secondNumber, answer] = [
 
 let solution, equation;
 
-const init = function () {
-  solution = 0;
+const init = function (a) {
+  if (a === undefined) a = 0;
+
+  solution = a;
   equation = [0, '', 0];
   answer.textContent = solution;
   firstNumber.textContent = equation[0] || '';
@@ -20,17 +22,31 @@ const init = function () {
 
 init();
 
+const updateCalculator = function (a) {
+  // CHECKS variable "a" button type
+
+  //Checks if a is number
+  if (!isNaN(Number(a))) {
+    let num = Number(a);
+
+    // There cannot be a 0 if answer is already 0
+
+    if (answer.textContent == 0) {
+      if (num !== 0) {
+        answer.textContent = num;
+      }
+    } else if (answer.textContent !== 0)
+      answer.textContent = `${answer.textContent}${num}`;
+  }
+};
+
 buttons.forEach(button => {
   button.addEventListener('click', () => {
     if (button.textContent === 'AC') {
       init();
       console.log('Calculator Cleared');
-    }
-
-    if (!isNaN(button.textContent)) {
-      let num = Number(button.textContent);
-      console.log('This is a number: ', Number(button.textContent));
     } else {
+      updateCalculator(button.textContent);
     }
   });
 });
