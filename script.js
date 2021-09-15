@@ -18,13 +18,14 @@ if (this.sessionStorage.mode === 'night') {
   container.classList.remove('night');
 }
 
-let solution, equation;
+let solution, equation, newAnswer;
 
 const init = function (a) {
   if (a === undefined) a = 0;
 
   solution = a;
   equation = [0, '', 0];
+  newAnswer = true;
   answer.textContent = solution;
   firstNumber.textContent = equation[0] || '';
   equType.textContent = equation[1] || '';
@@ -42,7 +43,7 @@ const updateCalculator = function (a) {
 
     // There cannot be a 0 if answer is already 0
 
-    if (answer.textContent == 0) {
+    if (answer.textContent == 0 && answer.textContent != '0.') {
       if (num !== 0) {
         answer.textContent = num;
       }
@@ -50,10 +51,29 @@ const updateCalculator = function (a) {
       answer.textContent = `${answer.textContent}${num}`;
   }
 
+  const doMath = function () {};
+
   //Checks if a is a mathmetical symbol
   let mathmeticalSymbol = a === '+' || a === '-' || a === 'X' || a === '÷';
   if (mathmeticalSymbol) {
     console.log(a);
+
+    if (answer.textContent != 0) {
+      equation[1] = '+';
+
+      if (!equation[0] && !equation[2]) {
+        equation[0] = Number(answer.textContent);
+        firstNumber.textContent = equation[0];
+        equType.textContent = a;
+        answer.textContent = '0';
+      } else if (equation[0] && equation[1]) {
+        doMath(a);
+      }
+    }
+  }
+
+  if (a === '·' && !answer.textContent.split('').includes('.')) {
+    answer.textContent = `${answer.textContent}.`;
   }
 };
 
@@ -62,10 +82,11 @@ buttons.forEach(button => {
     if (button.textContent === 'AC') {
       init();
       console.log('Calculator Cleared');
-    } else if (answer.textContent.length > 8) {
     } else {
-      updateCalculator(button.textContent);
-      // buttons[0].textContent = 'C';
+      if (answer.textContent.length < 8) {
+        updateCalculator(button.textContent);
+        // buttons[0].textContent = 'C';
+      }
     }
   });
 });
@@ -79,5 +100,3 @@ nightIcon.addEventListener('click', () => {
   container.classList.add('night');
   this.sessionStorage.mode = 'night';
 });
-
-console.log(this);
