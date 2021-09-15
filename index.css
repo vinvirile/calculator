@@ -7,6 +7,7 @@
   --bg-dark-s: #343a40;
   --peach: #ff6b6b;
   --teal: #20c997;
+  --trans: all 0.6s ease;
 }
 
 * {
@@ -31,10 +32,12 @@ body {
   border-radius: 24px;
   background-color: var(--bg-light-p);
   /* margin: 48px; */
+  transition: var(--trans);
 }
 
 .container.night {
   background-color: var(--bg-dark-p);
+  transition: var(--trans);
 }
 
 .day-icon,
@@ -42,10 +45,12 @@ body {
   width: 24px;
   height: 24px;
   cursor: pointer;
+  transition: var(--trans);
 }
 
 .night-icon {
   color: #ced4da;
+  transition: var(--trans);
 }
 
 .day-night-cycle-box {
@@ -60,6 +65,7 @@ body {
   justify-content: space-between;
   border-radius: 1em;
   margin: 12px auto;
+  transition: var(--trans);
 }
 
 .solution-numbers-box {
@@ -71,6 +77,7 @@ body {
 .equation {
   text-align: right;
   font-size: 24px;
+  letter-spacing: 2px;
 }
 
 .numbers-box {
@@ -97,6 +104,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: var(--trans);
 }
 
 .button-box {
@@ -122,6 +130,7 @@ button {
   align-self: center;
   justify-self: center;
   font-weight: 500;
+  transition: var(--trans);
 }
 
 button:active {
@@ -140,4 +149,49 @@ button:nth-child(12),
 button:nth-child(16),
 button:nth-child(20) {
   color: var(--peach);
+}
+
+/**************************
+******** NIGHT THEME   *****
+**************************/
+
+.container.night {
+  background-color: var(--bg-dark-p) !important;
+}
+
+.night .button-numbers-box {
+  background-color: var(--bg-dark-s);
+}
+
+.night .day-night-cycle {
+  background-color: var(--bg-dark-s);
+}
+
+.night .day-icon {
+  color: #868e96;
+}
+
+.night button {
+  background-color: var(--bg-dark-p);
+  color: #fff;
+}
+
+.night button:nth-child(1),
+.night button:nth-child(2),
+.night button:nth-child(3) {
+  color: var(--teal);
+}
+
+.night button:nth-child(4),
+.night button:nth-child(8),
+.night button:nth-child(12),
+.night button:nth-child(16),
+.night button:nth-child(20) {
+  color: var(--peach);
+}
+
+.night .f-num,
+.night .s-num,
+.night .answer {
+  color: #fff;
 }

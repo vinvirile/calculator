@@ -1,11 +1,22 @@
 // ~ DOM selectorsss
 const buttons = document.querySelectorAll('button');
+const container = document.querySelector('.container');
 const [firstNumber, equType, secondNumber, answer] = [
   document.querySelector('.f-num'),
   document.querySelector('.e-type'),
   document.querySelector('.s-num'),
   document.querySelector('.answer'),
 ];
+const [dayIcon, nightIcon] = [
+  document.querySelector('.day-icon'),
+  document.querySelector('.night-icon'),
+];
+
+if (this.sessionStorage.mode === 'night') {
+  container.classList.add('night');
+} else {
+  container.classList.remove('night');
+}
 
 let solution, equation;
 
@@ -38,6 +49,12 @@ const updateCalculator = function (a) {
     } else if (answer.textContent !== 0)
       answer.textContent = `${answer.textContent}${num}`;
   }
+
+  //Checks if a is a mathmetical symbol
+  let mathmeticalSymbol = a === '+' || a === '-' || a === 'X' || a === '÷';
+  if (mathmeticalSymbol) {
+    console.log(a);
+  }
 };
 
 buttons.forEach(button => {
@@ -45,8 +62,22 @@ buttons.forEach(button => {
     if (button.textContent === 'AC') {
       init();
       console.log('Calculator Cleared');
+    } else if (answer.textContent.length > 8) {
     } else {
       updateCalculator(button.textContent);
+      // buttons[0].textContent = 'C';
     }
   });
 });
+
+dayIcon.addEventListener('click', () => {
+  container.classList.remove('night');
+  this.sessionStorage.removeItem('mode');
+});
+
+nightIcon.addEventListener('click', () => {
+  container.classList.add('night');
+  this.sessionStorage.mode = 'night';
+});
+
+console.log(this);
