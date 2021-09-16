@@ -14,11 +14,12 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  touch-action: manipulation;
 }
 
 body {
   background-color: #000;
-  overflow-y: hidden;
+  /* overflow-y: hidden; */
   overflow-x: hidden;
   font-family: Ubuntu, sans-serif;
 }
